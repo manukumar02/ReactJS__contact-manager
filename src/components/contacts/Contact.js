@@ -18,7 +18,7 @@ class Contact extends Component {
   }
   
   render() {
-    const {id, name, email, phone} = this.props.contact;
+    const {id, name, email, phone, username, website, address, company} = this.props.contact;
     const {showContactInfo} = this.state;
     return (
       
@@ -27,14 +27,20 @@ class Contact extends Component {
           const {dispatch} = value;
           return (
             <div className="card card-body mb-3">
-              <h4>{name} <i onClick={this.onShowClick} className="fas fa-angle-down"></i>
+              <h4>{name}
+                <i onClick={this.onShowClick} className="fas fa-angle-down"/>
                 <i onClick={this.onDeleteClick.bind(this, id, dispatch)} className="fas fa-times"
-                   style={{float: 'right'}}></i>
+                   style={{float: 'right'}}/>
               </h4>
               {showContactInfo ? (
                 <ul className="list-group">
-                  <li className="list-group-item">{'Email: ' + email}</li>
+                  <li className="list-group-item">{'Email: ' + email} </li>
+                  <li className="list-group-item">{'UserName: ' + username} </li>
+                  <li className="list-group-item">{'WebSite: ' + website} </li>
+                  <li
+                    className="list-group-item">{'Address: ' + address.street + ' ' + address.city + ' ' + address.suite + ' ' + address.zipcode} </li>
                   <li className="list-group-item">{'Phone: ' + phone} </li>
+                  <li className="list-group-item">{'Company: ' + company.name} </li>
                 </ul>
               ) : null}
             </div>
